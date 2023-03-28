@@ -1,2 +1,11 @@
-<h1>Lists#show</h1>
-<p>Find me in app/views/lists/show.html.erb</p>
+<h1><%= @list.name %></h1>
+<%= link_to 'Ajouter un film', new_list_bookmark_path(@list, @bookmark) %>
+<div class='container movie-card'>
+  <% @list.movies.each do |movie|%>
+    <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
+    <%= image_tag movie.poster_url, class: 'movie-img' %>
+    <%= movie.title %>
+    <%= movie.overview %>
+    <%= link_to 'Supprimer un film', bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{movie.title} from your #{@list.name} list"}, class: 'text-danger' %>
+  <% end %>
+</div>
