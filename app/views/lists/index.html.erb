@@ -1,7 +1,7 @@
 <h1>Mes Listes</h1>
   <ul><% @lists.each do |list| %></ul>
     <%= link_to list_path(list) do %>
-    <li><%= list.name %></li>
+    <li class='list-card'><%= list.name %></li>
      <% end %>
   <% end %>
-<%= link_to 'Créer une nouvelle liste', new_list_path %>
+<%= link_to 'Créer une nouvelle liste', new_list_path, class: 'btn' %>

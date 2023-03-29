@@ -1,4 +1,6 @@
 class ListsController < ApplicationController
+  before_action :set_list, only: [:destroy]
+
   def index
     @lists = List.all
   end
@@ -24,5 +26,9 @@ class ListsController < ApplicationController
 
   def params_list
     params.require(:list).permit(:name)
+  end
+
+  def set_list
+    @list = List.find(params([:id]))
   end
 end
